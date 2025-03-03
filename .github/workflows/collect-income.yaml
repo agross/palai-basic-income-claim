@@ -1,0 +1,31 @@
+name: Collect income
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 21 * * *
+
+jobs:
+  collect-income:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        user:
+          - AG
+          - RS
+          - AM
+          - TB
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - run: bundle exec ./palai.rb
+        env:
+          PALAI_USER: ${{ secrets[format('{0}_LOGIN', matrix.user)] }}
+          PALAI_PASSWORD: ${{ secrets[format('{0}_PASSWORD', matrix.user)] }}
