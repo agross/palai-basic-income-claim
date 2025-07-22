@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 gem 'mechanize'
-gem 'rake-funnel'
 
 group :style do
   gem 'rubocop'

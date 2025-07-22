@@ -3,7 +3,6 @@
 
 require 'mechanize'
 require 'logger'
-require 'rake/funnel'
 
 def login(mechanize)
   user = ENV['PALAI_USER'] || (raise 'PALAI_USER is missing')
@@ -23,7 +22,7 @@ def claim_income(dashboard)
                            method: 'POST')
 
   unless claim
-    $stderr.puts('No income to claim')
+    warn('No income to claim')
     exit(1)
   end
 
@@ -36,8 +35,6 @@ def report_balance(mechanize, dashboard)
   balance = dashboard.at_css('div.stat .value').text.gsub(/[^\d.]/, '')
 
   $stdout.puts(balance)
-  Rake::Funnel::Integration::TeamCity::ServiceMessages \
-    .build_statistic_value(key: 'Balance', value: balance)
 end
 
 def logout(dashboard)
