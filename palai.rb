@@ -4,6 +4,10 @@
 require 'mechanize'
 require 'logger'
 
+def dry_run?
+  ENV.include?('DRY_RUN')
+end
+
 def login(mechanize)
   user = ENV['PALAI_USER'] || (raise 'PALAI_USER is missing')
   pass = ENV['PALAI_PASSWORD'] || (raise 'PALAI_USER is missing')
@@ -23,10 +27,12 @@ def claim_income(dashboard)
 
   unless claim
     warn('No income to claim')
+    return if dry_run?
+
     exit(1)
   end
 
-  claim.submit
+  claim.submit unless dry_run?
 end
 
 def report_balance(mechanize, dashboard)
