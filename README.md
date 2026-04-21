@@ -2,8 +2,7 @@
 
 Claim your [Palai](https://palai.org/) basic income automatically.
 
-Reports your balance on stdout and as a TeamCity build statistic (only if you
-run TeamCity).
+Reports your balance on stdout.
 
 ## Usage
 
