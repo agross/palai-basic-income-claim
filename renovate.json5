@@ -14,4 +14,12 @@
   labels: [
     'dependencies',
   ],
+  packageRules: [
+    {
+      matchPackagePatterns: [
+        '.*'
+      ],
+      minimumReleaseAge: '3 days',
+    }
+  ]
 }
