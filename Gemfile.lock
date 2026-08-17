@@ -13,7 +13,7 @@ GEM
     domain_name (0.6.20240107)
     http-cookie (1.1.6)
       domain_name (~> 0.5)
-    io-console (0.9.1)
+    io-console (0.9.2)
     json (2.21.2)
     language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
